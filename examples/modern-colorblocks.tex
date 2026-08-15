@@ -1,0 +1,24 @@
+% !TeX program = xelatex
+\documentclass{simplecnresume}
+\resumesetup{color=ResumeModern,section-line=solid,entry-separator=bar}
+
+% 品牌 Logo 色块 + 主题色项目标题 + 金色结果，层级最鲜明。
+\newcommand{\ExampleCompanyOne}{%
+  \resumebanner[ResumeSky][images/logo-stellar-tech.png]
+    {星河智能科技有限公司}{AI 应用工程师}{2024.07 -- 至今}%
+}
+\newcommand{\ExampleCompanyTwo}{%
+  \resumebanner[ResumePink][images/logo-cloud-lab.png]
+    {云杉数据实验室}{算法工程师（实习）}{2023.07 -- 2024.03}%
+}
+\newcommand{\ExampleProjectOne}{%
+  \resumeentry[ResumePrimary][bar]{企业知识库问答平台}{RAG / 大语言模型应用}{2024.08 -- 2025.01}%
+}
+\newcommand{\ExampleProjectTwo}{%
+  \resumeentry[ResumePrimary][bar]{多智能体数据采集助手}{Agent / 浏览器自动化}{2024.03 -- 2024.07}%
+}
+\newcommand{\ExampleHighlight}[1]{\resumehighlight[ResumeGold]{#1}}
+
+\begin{document}
+\input{examples/example-content.tex}
+\end{document}

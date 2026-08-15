@@ -1,0 +1,21 @@
+% !TeX program = xelatex
+\documentclass{simplecnresume}
+\resumesetup{color=ResumeClassic,section-line=gradient,entry-separator=dash}
+
+% 无色块公司行 + 黑色加粗项目标题，适合传统、稳重的一页简历。
+\newcommand{\ExampleCompanyOne}{%
+  \resumeentry[black][dash]{星河智能科技有限公司}{AI 应用工程师}{2024.07 -- 至今}%
+}
+\newcommand{\ExampleCompanyTwo}{%
+  \resumeentry[black][dash]{云杉数据实验室}{算法工程师（实习）}{2023.07 -- 2024.03}%
+}
+\newcommand{\ExampleProjectOne}{%
+  \resumeentry[black][dash]{企业知识库问答平台}{RAG / 大语言模型应用}{2024.08 -- 2025.01}%
+}
+\newcommand{\ExampleProjectTwo}{%
+  \resumeentry[black][dash]{多智能体数据采集助手}{Agent / 浏览器自动化}{2024.03 -- 2024.07}%
+}
+
+\begin{document}
+\input{examples/example-content.tex}
+\end{document}
