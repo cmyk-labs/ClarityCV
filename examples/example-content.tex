@@ -16,10 +16,14 @@
 }
 \providecommand{\ExampleHighlight}[1]{\resumehighlight{#1}}
 
-\resumeheader[images/placeholder-id-photo-transparent.png]{示例姓名}{%
+% 继承类默认前景叠层；裁掉占位照片文件自带的透明上边。
+% photo-x-shift（正值向右）和 photo-y-shift（正值向上）可选，用于手动微调。
+\resumeheader[images/placeholder-id-photo-transparent.png][photo-trim={0 0 0 168bp}]{示例姓名}{%
   \resumecontact{\faPhone}{联系电话：138-0000-0000}
-  \resumecontact{\faEnvelope}{邮箱：hello@example.com}\\
-  \resumecontact{\faGlobe}{技术博客：https://example.com}
+  \resumecontact{\faEnvelope}{邮箱：\resumelink{mailto:hello@example.com}{hello@example.com}}\\
+  \resumecontact{\faGlobe}{技术博客：\resumelink{https://example.com}{https://example.com} \resumehighlight{（10万+访问量）}}
+  \\
+  \resumecontact{\faGithub}{GitHub：\resumelink{https://github.com/your-name}{https://github.com/your-name}\hspace{0.35em}\resumehighlight[ResumeGold]{（\faStar\hspace{0.25em}100+ Star）}}
 }
 
 \resumesection{个人简介}

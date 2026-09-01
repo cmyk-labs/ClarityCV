@@ -31,18 +31,10 @@
       <a href="examples/classic-clean.tex">源文件</a>
     </td>
     <td width="50%" align="center">
-      <strong>紫色轻量版</strong><br>
-      <a href="examples/purple-light.pdf"><img src="previews/purple-light.png" alt="紫色轻量版预览" width="100%"></a><br>
-      <a href="examples/purple-light.tex">源文件</a>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" align="center">
       <strong>黑灰极简版</strong><br>
       <a href="examples/minimal-mono.pdf"><img src="previews/minimal-mono.png" alt="黑灰极简版预览" width="100%"></a><br>
       <a href="examples/minimal-mono.tex">源文件</a>
     </td>
-    <td width="50%"></td>
   </tr>
 </table>
 
@@ -50,13 +42,14 @@
 
 - 中文开箱即用，使用 XeLaTeX 编译。
 - 简历内容与排版定义分离。
-- 可统一配置主题色、章节线、条目分隔符和字号。
+- 可统一配置现代黑体或经典宋体模式、主题色、章节线、条目分隔符、字号和版面间距。
+- 头部默认采用自适应前景照片：人物顶部与姓名平齐，照片不撑高内容，并自动限制在首个模块横线上方；也可隐藏、微调位置或切回流式布局。
 - 普通条目与带 Logo 的公司色块可自由选择。
 - 较长标题自动换行，时间仍保持右对齐。
 - 支持多页内容，并尽量避免章节标题和下一行内容被拆开。
 - 联系方式和奖项图标统一为黑色，减少无关的视觉强调。
 - 附带证件照与 Logo 占位素材。
-- 提供四套额外排版预设及编译后预览。
+- 提供三套额外排版预设及编译后预览。
 
 ## 环境要求
 
@@ -100,26 +93,55 @@ xelatex resume.tex
 
 ## 全局配置
 
-在 `resume.tex` 导言区使用 `\resumesetup`。所有配置项都是可选的，省略时使用默认值。
+当前推荐样式已经写入 `simplecnresume.cls`，直接使用文档类即可继承全部默认值。只有需要改变个别样式时，才在 `resume.tex` 导言区用 `\resumesetup` 覆盖对应项。
 
 ```tex
 \documentclass{simplecnresume}
 
+% 只填写需要覆盖的配置；未填写项继续继承类默认值。
 \resumesetup{
-  color=ResumeClassic,
-  section-line=solid,
-  entry-separator=bar
+  font-mode=modern,
+  color=ResumeModern
 }
 ```
 
 | 配置项 | 可选值 | 默认值 | 作用范围 |
 | --- | --- | --- | --- |
 | `color` | `ResumeClassic`、`ResumeModern` 或已经定义的颜色名 | `ResumeClassic` | 姓名、章节标题、章节线、列表圆点、序号及主题色条目 |
-| `section-line` | `gradient`、`solid` | `gradient` | 章节标题下方的渐变线或纯色线 |
-| `entry-separator` | `dash`、`bar` | `dash` | 条目标题与副标题之间的短横杠或竖线 |
-| `name-size` | 合法的 LaTeX 长度 | `22bp` | 姓名字号，默认效果等同于 `\zihao{2}` |
-| `section-size` | 合法的 LaTeX 长度 | `14bp` | 模块标题字号，默认效果等同于 `\zihao{4}` |
-| `body-size` | 合法的 LaTeX 长度 | `9pt` | 正文字号，正文行距自动随之缩放 |
+| `font-mode` | `modern`、`classic` | `classic` | `classic` 使用 FandolSong + TeX Gyre Termes 正文；`modern` 自动选择现代中文无衬线字体并搭配 TeX Gyre Heros |
+| `section-line` | `gradient`、`solid` | `solid` | 章节标题下方的渐变线或纯色线 |
+| `entry-separator` | `dash`、`bar` | `bar` | 条目标题与副标题之间的短横杠或竖线 |
+| `name-size` | 合法的 LaTeX 长度 | `14bp` | 姓名字号；默认略大于 `12.5bp` 的模块标题 |
+| `section-size` | 合法的 LaTeX 长度 | `12.5bp` | 模块标题字号；与 9.3pt 正文保持约 1.34 倍层级 |
+| `body-size` | 合法的 LaTeX 长度 | `9.3pt` | 正文字号，正文行距自动随之缩放 |
+| `name-weight` | `inherit`、`regular`、`bold` | `inherit` | 姓名默认继承模块标题字重，也可单独覆盖 |
+| `name-bold` | `true`、`false` | 未设置 | 姓名字重的兼容布尔写法；设置后会覆盖继承行为 |
+| `section-font` | `simhei`、`modern` | `simhei` | 模块标题字体；`simhei` 复刻 v4，`modern` 使用现代中文字体链 |
+| `section-font-name` | 已安装的字体名称 | 无 | 用任意系统字体覆盖模块标题字体，如 `{Microsoft YaHei}` |
+| `section-weight` | `regular`、`bold` | `bold` | 模块标题字重；SimHei 默认使用 1.3 的轻度伪粗 |
+| `section-bold` | `true`、`false` | `true` | 是否统一加粗所有 `\resumesection`，是 `section-weight` 的布尔写法 |
+| `header-photo` | `true`、`false` | `true` | 全局显示或隐藏头部照片栏 |
+| `header-photo-layout` | `overlay`、`flow` | `overlay` | 默认以前景层绘制照片，不占用纵向高度；`flow` 恢复照片参与排版的双栏布局 |
+| `header-photo-align` | `top`、`center`、`bottom` | `bottom` | 仅在 `flow` 布局中控制照片相对个人信息栏的纵向对齐 |
+| `header-photo-width` | 合法的 LaTeX 长度 | `2.8cm` | 照片最大宽度及照片栏宽度 |
+| `header-photo-max-height` | 合法的 LaTeX 长度 | `3.2cm` | 照片最大高度；照片始终保持原始比例 |
+| `header-photo-trim` | `左 下 右 上` 四个长度 | `0 0 0 0` | 裁掉照片文件自带的透明边或空白边 |
+| `header-photo-line-gap` | 合法的 LaTeX 长度 | `0.18em` | 前景照片底部与首个模块横线之间的最小留白 |
+| `header-photo-x-shift` | 合法的 LaTeX 长度 | `0pt` | 手动水平微调；正值向右、负值向左 |
+| `header-photo-y-shift` | 合法的 LaTeX 长度 | `0pt` | 手动垂直微调；正值向上、负值向下，向下时仍会缩放以避免越过横线 |
+| `header-column-gap` | 合法的 LaTeX 长度 | `1em` | 个人信息与照片栏之间的距离 |
+| `header-name-gap` | 合法的 LaTeX 长度 | `0.35em` | 姓名与联系方式之间的距离 |
+| `header-after-skip` | 合法的 LaTeX 长度 | `0.15em` | 整个头部之后的附加距离 |
+| `section-before-skip` | 合法的 LaTeX 长度 | `1.05em` | 模块标题与上一段内容之间的距离 |
+| `section-line-gap` | 合法的 LaTeX 长度 | `0.28em` | 模块标题与横线之间的间隔 |
+| `section-after-skip` | 合法的 LaTeX 长度 | `0.42em` | 模块横线与正文之间的距离 |
+| `section-line-width` | 合法的 LaTeX 长度 | `0.4pt` | 渐变或纯色模块横线的粗细 |
+| `project-divider-before-skip` | 合法的 LaTeX 长度 | `0.35em` | 项目分隔线上方的留白 |
+| `project-divider-after-skip` | 合法的 LaTeX 长度 | `0.35em` | 项目分隔线下方的留白 |
+| `project-divider-width` | 合法的 LaTeX 长度 | `0.35pt` | 项目分隔线的粗细 |
+| `banner-text-shift` | 合法的 LaTeX 长度 | `0.4ex` | Logo 公司栏中文字的垂直微调；正值向上，日期仍自然居中 |
+| `banner-padding-y` | 合法的 LaTeX 长度 | `0.12em` | Logo 公司栏色块的上下内边距；外部留白不受影响 |
+| `banner-date-width` | 合法的 LaTeX 长度 | `9.3em` | Logo 公司栏右侧时间列宽度；中间公司/岗位列自动使用剩余空间并换行 |
 
 只填写需要调整的字号即可：
 
@@ -132,6 +154,26 @@ xelatex resume.tex
 ```
 
 增大正文字号后，内容可能自然延伸到下一页。
+
+### 字体模式切换
+
+```tex
+% 现代技术型：现代中文无衬线 + 英文无衬线。
+\resumesetup{font-mode=modern}
+
+% 经典正式型：回到原来的中文宋体 + 英文衬线。
+\resumesetup{font-mode=classic}
+```
+
+`modern` 首选微软雅黑；缺少该字体时依次尝试思源黑体、Noto Sans CJK、苹方、等线，最后才回退到 FandolHei。姓名默认与模块标题共同使用 SimHei、主题色和相同字重，仅字号独立；系统没有 SimHei 时两者都自动回退到现代字体链。`classic` 只把正文及联系方式恢复为宋体/衬线组合。
+
+模块标题字体可以单独切换或传入任意已安装字体：
+
+```tex
+\resumesetup{section-font=simhei}              % v4 风格
+\resumesetup{section-font=modern}              % 现代字体链
+\resumesetup{section-font-name={Microsoft YaHei}} % 指定系统字体
+```
 
 ### 自定义主题色
 
@@ -149,21 +191,66 @@ xelatex resume.tex
 
 旧写法 `gradientline`、`solidline` 文档类选项和 `\setresumecolor{...}` 仍然兼容。
 
+纯色线和渐变线都会按当前位置的 `\linewidth` 绘制；调整页面边距、分栏或在 `minipage` 中使用时，不需要手动填写横线长度。
+
 ## 内容命令
 
 ### 头部、联系方式与章节
 
 ```tex
-\resumeheader[images/avatar.png]{姓名}{%
+\resumeheader[images/placeholder-id-photo-transparent.png][photo-trim={0 0 0 168bp}]{示例姓名}{%
   \resumecontact{\faPhone}{联系电话：138-0000-0000}
-  \resumecontact{\faEnvelope}{邮箱：hello@example.com}\\
-  \resumecontact{\faGlobe}{个人主页：https://example.com}
+  \resumecontact{\faEnvelope}{邮箱：\resumelink{mailto:hello@example.com}{hello@example.com}}\\
+  \resumecontact{\faGlobe}{个人主页：\resumelink{https://example.com}{https://example.com}}
+  \\
+  \resumecontact{\faGithub}{GitHub：\resumelink{https://github.com/your-name}{https://github.com/your-name}\hspace{0.35em}\resumehighlight[ResumeGold]{（\faStar\hspace{0.25em}100+ Star）}}
 }
 
 \resumesection{工作经历}
 ```
 
-照片路径可以省略；省略后显示通用照片占位框。联系方式图标不跟随主题色，始终保持黑色。
+头部不设置固定高度，由姓名和联系方式的实际内容自然撑开。照片默认作为前景叠层从姓名顶部向下绘制，不参与纵向占位；首个 `\resumesection` 的横线会自动成为下边界，空间不足时照片按比例缩小并保留 `header-photo-line-gap`。照片路径省略后显示通用占位框，联系方式图标始终保持黑色。
+
+照片文件若在人物上方自带透明或纯色空边，可用 `photo-trim={左 下 右 上}` 先裁掉空边，使“人物可见顶部”真正与姓名平齐。仓库占位图的上边是 `168bp`；换成已经紧边裁好的证件照后删除该参数即可。
+
+短联系方式仍可在同一行排列；当单项自然宽度超过个人信息栏时，`\resumecontact` 会自动改用固定图标列和可换行文本列。邮箱及 URL 推荐用 `\resumelink{实际链接}{显示文字}`，避免长地址侵入照片栏。
+
+第二个可选参数只作用于当前头部，可覆盖全局设置：
+
+```tex
+% 当前简历不显示照片，个人信息自动使用整行宽度。
+\resumeheader[][photo=false,name-gap=0.4em,after-skip=0.2em]{姓名}{联系信息}
+
+% 当前前景照片的尺寸、裁边和位置微调；正 x 向右，正 y 向上。
+\resumeheader[images/avatar.png][
+  photo-width=2.6cm,
+  photo-max-height=3.1cm,
+  photo-trim={0 0 0 8bp},
+  photo-x-shift=-1mm,
+  photo-y-shift=-0.5mm,
+  column-gap=1.2em
+]{姓名}{联系信息}
+
+% 如需照片参与头部高度计算，可回退为原来的流式双栏布局。
+\resumeheader[images/avatar.png][photo-layout=flow,photo-align=bottom]{姓名}{联系信息}
+```
+
+局部参数与全局参数的对应关系如下：
+
+| 当前头部参数 | 对应全局参数 |
+| --- | --- |
+| `photo` | `header-photo` |
+| `photo-layout` | `header-photo-layout` |
+| `photo-align` | `header-photo-align` |
+| `photo-width` | `header-photo-width` |
+| `photo-max-height` | `header-photo-max-height` |
+| `photo-trim` | `header-photo-trim` |
+| `photo-line-gap` | `header-photo-line-gap` |
+| `photo-x-shift` | `header-photo-x-shift` |
+| `photo-y-shift` | `header-photo-y-shift` |
+| `column-gap` | `header-column-gap` |
+| `name-gap` | `header-name-gap` |
+| `after-skip` | `header-after-skip` |
 
 ### 普通条目
 
@@ -202,6 +289,8 @@ xelatex resume.tex
 ```tex
 \resumebanner[ResumeOrange][]{公司名称}{岗位名称}{时间}
 ```
+
+公司与岗位过长时会在中间列自动换行，右侧时间列保持固定并始终位于色块内；可通过 `banner-date-width` 调整时间栏宽度。
 
 ### 列表与重点结果
 
@@ -276,4 +365,4 @@ latexmk -xelatex -output-directory=examples examples/modern-colorblocks.tex
 
 本项目采用 [MIT License](LICENSE)。
 
-Copyright (c) 2026 CMYK Labs (cmyk-labs)
+Copyright (c) 2026 SimpleCNResume Contributors

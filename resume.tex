@@ -3,22 +3,17 @@
 % 下方姓名、联系方式、单位、项目、论文和奖项均为虚构示例，请直接替换。
 \documentclass{simplecnresume}
 
-% 推荐投递风格：经典深蓝、纯色章节线、紧凑竖线分隔符。
-% 重点突出信息层级和正文可读性；其他预设及自定义方法见 README。
-\resumesetup{
-  color=ResumeClassic,
-  section-line=solid,
-  entry-separator=bar
-}
-
 \begin{document}
 
-% 用法：\resumeheader[照片路径]{姓名}{联系信息}
-% 不填写可选的照片路径时，将自动显示通用照片占位框。
-\resumeheader[images/placeholder-id-photo-transparent.png]{示例姓名}{%
+% 用法：\resumeheader[照片路径][局部参数]{姓名}{联系信息}
+% 照片默认以前景叠层从姓名顶部向下展示；photo-trim 裁掉本占位图的透明上边。
+% 可按需增加 photo-x-shift（正值向右）与 photo-y-shift（正值向上）微调位置。
+\resumeheader[images/placeholder-id-photo-transparent.png][photo-trim={0 0 0 168bp}]{示例姓名}{%
   \resumecontact{\faPhone}{联系电话：138-0000-0000}
-  \resumecontact{\faEnvelope}{邮箱：\href{mailto:hello@example.com}{hello@example.com}}\\
-  \resumecontact{\faGlobe}{技术博客：\href{https://example.com}{https://example.com}}
+  \resumecontact{\faEnvelope}{邮箱：\resumelink{mailto:hello@example.com}{hello@example.com}}\\
+  \resumecontact{\faGlobe}{技术博客：\resumelink{https://example.com}{https://example.com} \resumehighlight{（10万+访问量）}}
+  \\
+  \resumecontact{\faGithub}{GitHub：\resumelink{https://github.com/your-name}{https://github.com/your-name}\hspace{0.35em}\resumehighlight[ResumeGold]{（\faStar\hspace{0.25em}100+ Star）}}
 }
 
 \resumesection{个人简介}
@@ -30,19 +25,19 @@
 \resumesection{工作经历}
 % 投递版优先使用纯文字公司栏，减少装饰干扰并保持黑白打印清晰。
 % 如需作品展示风格，也可换用带 Logo 的 \resumebanner，示例见 examples。
-\resumeentry[black][bar]{星河智能科技有限公司}{AI 应用工程师}{2024.07 -- 至今}
+\resumeentry[black]{星河智能科技有限公司}{AI 应用工程师}{2024.07 -- 至今}
 \begin{resumeitems}
   \item 负责企业知识检索、智能问答与数据分析类应用的算法设计、效果评估及服务化部署。
 \end{resumeitems}
 
-\resumeentry[black][bar]{云杉数据实验室}{算法工程师（实习）}{2023.07 -- 2024.03}
+\resumeentry[black]{云杉数据实验室}{算法工程师（实习）}{2023.07 -- 2024.03}
 \begin{resumeitems}
   \item 参与文本分类与信息抽取模型开发，完成数据清洗、实验设计、误差分析和接口封装。
 \end{resumeitems}
 
 \resumesection{项目经历}
 % 项目标题使用主题色；第一个可选参数支持 black、ResumePrimary 或自定义颜色。
-\resumeentry[ResumePrimary][bar]{企业知识库问答平台}{RAG / 大语言模型应用}{2024.08 -- 2025.01}
+\resumeentry[ResumePrimary]{企业知识库问答平台}{RAG / 大语言模型应用}{2024.08 -- 2025.01}
 \begin{resumeitems}
   \item \textbf{项目背景：}面向内部制度、产品手册和常见问题构建可追溯的知识问答平台，减少人工检索成本。
   \item \textbf{核心技术：}Python、FastAPI、向量检索、关键词检索、Rerank、Docker。
@@ -55,7 +50,7 @@
 \end{resumeitems}
 
 \resumeprojectdivider
-\resumeentry[ResumePrimary][bar]{多智能体数据采集助手}{Agent / 浏览器自动化}{2024.03 -- 2024.07}
+\resumeentry[ResumePrimary]{多智能体数据采集助手}{Agent / 浏览器自动化}{2024.03 -- 2024.07}
 \begin{resumeitems}
   \item \textbf{项目背景：}将自然语言采集需求转换为可执行步骤，辅助非技术用户完成公开网页数据整理。
   \item \textbf{核心技术：}LangGraph、ReAct、Playwright、Function Calling、结构化输出。
