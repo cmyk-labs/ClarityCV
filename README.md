@@ -17,27 +17,25 @@
 
 ## What is ClarityCV?
 
-ClarityCV is a clean, configurable LaTeX résumé class designed for Chinese content. It keeps layout logic in the class and résumé content in ordinary LaTeX, so most of a document is written with familiar commands such as `\section`, `itemize`, `enumerate`, `\href`, and `\textbf`.
+ClarityCV is a lightweight LaTeX résumé class designed for Chinese-language job applications. It centralizes typography, spacing, color, and layout rules in `claritycv.cls`, so users can focus on content instead of repeatedly adjusting complex formatting code.
 
-The project and document class share the **ClarityCV** name:
-
-```tex
-\documentclass{claritycv}
-```
+Résumé content favors standard LaTeX commands such as `\section`, `itemize`, `enumerate`, `\href`, and `\textbf`, with a small specialized interface only for headers, contacts, and experience entries.
 
 ## Highlights
 
-- Native Chinese typesetting through `ctexart` and XeLaTeX.
-- Four template-specific commands for setup, headers, contacts, and entries.
-- Standard LaTeX commands for sections, lists, links, colors, and emphasis.
-- Optional portrait with overlay or flow layout and horizontal/vertical adjustment.
-- One entry command for plain rows, colored banners, logos, dividers, and font weight.
-- Start and end dates are separate arguments; the class inserts the separator and spacing.
-- Bundled Latin fonts and complete, independent examples with compiled previews.
+- **A deliberately small interface:** Only four template-specific commands cover global setup, headers, contacts, and experience entries; ordinary content stays in standard LaTeX.
+- **Chinese typesetting out of the box:** Built on `ctexart` and XeLaTeX, with defaults for fonts, sizes, line spacing, section rhythm, and page layout tuned for Chinese technical résumés.
+- **Content separated from presentation:** Recommended visual defaults live in `claritycv.cls`; users mainly maintain résumé content and add options only when changing the design.
+- **Standard LaTeX behavior preserved:** `\section`, `itemize`, `enumerate`, `\href`, and `\textbf` work normally, without redefining bold text or applying synthetic bolding.
+- **Flexible without unnecessary complexity:** One `\resumeentry` command supports plain rows, colored banners, logos, separators, and font weights, while the class formats separate start and end dates consistently.
+- **An adjustable résumé header:** The portrait is optional and supports overlay or flow layouts, sizing, alignment, and horizontal or vertical positioning.
+- **Complete standalone style examples:** The recommended default, modern color blocks, classic clean, and minimal monochrome examples share the same base typography and spacing, and each compiles independently.
 
 ## Preview
 
-Click a preview to open the corresponding PDF.
+All four examples use the same fictional copy, portrait, and base typography. Only public options change their colors, section rules, and entry styles, making the themes easy to compare.
+
+Click a preview to open its PDF, or select **Source** to inspect the corresponding standalone `.tex` document.
 
 <table>
   <tr>
@@ -65,8 +63,6 @@ Click a preview to open the corresponding PDF.
     </td>
   </tr>
 </table>
-
-The four documents use the same fictional copy and portrait. Their differences come from public options and theme colors, and every example is a standalone `.tex` file without shared body imports.
 
 ## Quick start
 
@@ -100,10 +96,7 @@ On Overleaf, upload the complete project, choose **XeLaTeX**, and set `claritycv
 
 \begin{document}
 
-\resumeheader[
-  photo={images/placeholder-id-photo-transparent.png},
-  name-size=16bp
-]{Your Name}{%
+\resumeheader{Your Name}{%
   \resumecontact{\faPhone}{Phone: 138-0000-0000}
   \resumecontact{\faEnvelope}{Email: \href{mailto:hello@example.com}{hello@example.com}}
 }
@@ -119,7 +112,7 @@ On Overleaf, upload the complete project, choose **XeLaTeX**, and set `claritycv
 \end{document}
 ```
 
-## Public interface
+## Core interface
 
 Only four template-specific commands are required:
 
@@ -292,19 +285,6 @@ Compile an additional example from the project root with:
 ```bash
 latexmk -xelatex -outdir=examples examples/modern-colorblocks.tex
 ```
-
-## Migration from the old interface
-
-| Old interface | Current interface |
-| --- | --- |
-| `\resumesection` | `\section` |
-| `resumeitems` | `itemize` |
-| `resumedetails` and inline numbering helpers | `enumerate` |
-| `\resumebanner` | `\resumeentry[style=banner,...]` |
-| `\resumeprojectdivider` | `\resumeentry[divider=before,...]` on the next entry |
-| `\resumelink` | `\href`, `\url`, or `\nolinkurl` |
-| `\resumehighlight` | `\textcolor{color}{\textbf{content}}` |
-| `resumeawards` and `\resumeaward` | Standard `itemize`, optionally inside `multicols` |
 
 ## Acknowledgements
 

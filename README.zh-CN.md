@@ -17,27 +17,25 @@
 
 ## ClarityCV 是什么？
 
-ClarityCV 是一款面向中文内容的简洁、可配置 LaTeX 简历文档类。排版逻辑放在文档类中，简历正文尽量使用标准 LaTeX 命令编写，例如 `\section`、`itemize`、`enumerate`、`\href` 和 `\textbf`。
+ClarityCV 是一款面向中文求职场景的轻量级 LaTeX 简历文档类。它将字体、间距、颜色和版面规则集中封装在 `claritycv.cls` 中，让用户专注于简历内容，而不必反复调整复杂的排版代码。
 
-项目名称与文档类名称统一为 **ClarityCV**：
+正文优先使用 `\section`、`itemize`、`enumerate`、`\href` 和 `\textbf` 等标准 LaTeX 命令，只在简历头部、联系方式和经历条目等特定场景提供少量专用接口。
 
-```tex
-\documentclass{claritycv}
-```
+## 项目亮点
 
-## 特点
-
-- 基于 `ctexart` 与 XeLaTeX，原生支持中文排版。
-- 只保留全局设置、头部、联系方式和条目四个模板命令。
-- 章节、列表、链接、颜色和强调尽量复用标准 LaTeX 命令。
-- 照片可选，支持叠放或正常分栏，并可上下左右移动。
-- 同一个条目命令支持普通行、色块、Logo、分隔线和字重切换。
-- 开始时间与结束时间分开填写，连接符和间距由文档类生成。
-- 内置英文字体，提供四套完整、独立且带编译预览的示例。
+- **简洁而克制的接口**：只提供全局设置、简历头部、联系方式和经历条目四个模板命令，其余内容尽量使用标准 LaTeX 写法。
+- **开箱即用的中文排版**：基于 `ctexart` 与 XeLaTeX，默认字体、字号、行距、章节间距和页面布局已针对中文技术简历调校。
+- **内容与样式分离**：推荐排版参数集中在 `claritycv.cls` 中，用户主要维护简历内容，只有需要改变视觉效果时才填写可选参数。
+- **尊重标准 LaTeX 行为**：直接支持 `\section`、`itemize`、`enumerate`、`\href` 和 `\textbf`，不重定义标准加粗命令，也不叠加伪粗效果。
+- **灵活但不过度复杂**：同一个 `\resumeentry` 可切换普通条目、彩色色块、Logo、分隔符和字重；开始与结束时间分开填写，格式由文档类统一生成。
+- **可调节的简历头部**：照片完全可选，支持叠放或正常分栏，并可通过参数控制尺寸、对齐方式及上下左右位置。
+- **完整独立的风格示例**：提供推荐默认版、现代色块版、经典简洁版和黑灰极简版；四份文档使用一致的基础字体和间距，每个示例均可独立编译。
 
 ## 排版预览
 
-点击预览图可打开对应 PDF。
+四套示例使用同一套虚构文案、照片和基础排版，只通过公开参数改变颜色、章节线和条目样式，便于直观比较不同主题。
+
+点击预览图可打开 PDF，点击“源文件”可查看对应的独立 `.tex` 文档。
 
 <table>
   <tr>
@@ -65,8 +63,6 @@ ClarityCV 是一款面向中文内容的简洁、可配置 LaTeX 简历文档类
     </td>
   </tr>
 </table>
-
-主文件和三个示例使用同一套虚构文案及照片。它们的差异只来自公开参数和主题颜色；每个示例都是完整独立的 `.tex` 文件，不通过 `\input` 共享正文。
 
 ## 快速开始
 
@@ -100,10 +96,7 @@ xelatex claritycv.tex
 
 \begin{document}
 
-\resumeheader[
-  photo={images/placeholder-id-photo-transparent.png},
-  name-size=16bp
-]{姓名}{%
+\resumeheader{姓名}{%
   \resumecontact{\faPhone}{联系电话：138-0000-0000}
   \resumecontact{\faEnvelope}{邮箱：\href{mailto:hello@example.com}{hello@example.com}}
 }
@@ -119,7 +112,9 @@ xelatex claritycv.tex
 \end{document}
 ```
 
-## 四个公开命令
+## 核心接口
+
+只需要使用四个模板专用命令：
 
 | 命令 | 作用 |
 | --- | --- |
@@ -290,19 +285,6 @@ ClarityCV 不会重定义 `\textbf`，也不会叠加伪粗效果；它直接使
 ```bash
 latexmk -xelatex -outdir=examples examples/modern-colorblocks.tex
 ```
-
-## 从旧接口迁移
-
-| 旧接口 | 当前接口 |
-| --- | --- |
-| `\resumesection` | `\section` |
-| `resumeitems` | `itemize` |
-| `resumedetails` 和行内编号辅助命令 | `enumerate` |
-| `\resumebanner` | `\resumeentry[style=banner,...]` |
-| `\resumeprojectdivider` | 下一条使用 `\resumeentry[divider=before,...]` |
-| `\resumelink` | `\href`、`\url` 或 `\nolinkurl` |
-| `\resumehighlight` | `\textcolor{颜色}{\textbf{内容}}` |
-| `resumeawards` 和 `\resumeaward` | 标准 `itemize`，需要时放入 `multicols` |
 
 ## 致谢
 
