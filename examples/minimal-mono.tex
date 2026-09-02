@@ -1,23 +1,94 @@
 % !TeX program = xelatex
-\documentclass{simplecnresume}
-\definecolor{ExampleMono}{RGB}{45,50,55}
-\resumesetup{color=ExampleMono}
-
-% 黑灰无色块 + 不加粗条目标题，弱化装饰、突出正文。
-\newcommand{\ExampleCompanyOne}{%
-  \resumeentry*[black]{星河智能科技有限公司}{AI 应用工程师}{2024.07 -- 至今}%
+% 与 claritycv.tex 共用内容结构和基础尺寸，仅通过公开参数切换为黑灰极简风格；全部信息均为虚构。
+\documentclass{claritycv}
+\definecolor{ExampleMono}{RGB}{48,54,60}
+\resumesetup{
+  color=ExampleMono,
+  section-line-width=0.25pt,
+  entry-separator=bar
 }
-\newcommand{\ExampleCompanyTwo}{%
-  \resumeentry*[black]{云杉数据实验室}{算法工程师（实习）}{2023.07 -- 2024.03}%
-}
-\newcommand{\ExampleProjectOne}{%
-  \resumeentry*[black]{企业知识库问答平台}{RAG / 大语言模型应用}{2024.08 -- 2025.01}%
-}
-\newcommand{\ExampleProjectTwo}{%
-  \resumeentry*[black]{多智能体数据采集助手}{Agent / 浏览器自动化}{2024.03 -- 2024.07}%
-}
-\newcommand{\ExampleHighlight}[1]{\resumehighlight[black]{#1}}
 
 \begin{document}
-\input{examples/example-content.tex}
+
+\resumeheader[
+  photo={images/placeholder-id-photo-transparent.png}
+]{林知远}{%
+  \resumecontact{\faPhone}{联系电话：138-0000-0000}
+  \resumecontact{\faEnvelope}{邮箱：\href{mailto:lin.zhiyuan.ai@example.com}{\nolinkurl{lin.zhiyuan.ai@example.com}}}\\
+  \resumecontact{\faGlobe}{技术博客：\href{https://example.com/lin-ai-lab}{\nolinkurl{https://example.com/lin-ai-lab}} \textcolor{ExampleMono}{\textbf{（28万+访问量）}}}
+  \\
+  \resumecontact{\faGithub}{代码主页：\href{https://example.com/lin-zhiyuan-code}{\nolinkurl{https://example.com/lin-zhiyuan-code}}}\\
+  \resumecontact{\faGithub}{项目贡献：\href{https://example.com/chronos-lab}{ChronosLab}\textcolor{ExampleMono}{(\faStar\hspace{0.25em}\textbf{4.8k stars})}、\href{https://example.com/opti-grid}{OptiGrid} \textcolor{ExampleMono}{(\faStar\hspace{0.25em}\textbf{36.2k stars})}}
+}
+
+\section{个人简介}
+\begin{itemize}
+  \item \textbf{个人概况：}2025年毕业·计算机与智能工程系（人工智能与数据工程专业）；AI 平台与算法工程师，曾主导/参与 8+ 个智能项目从需求调研、方案设计、模型验证到上线交付的完整流程。发表/在审智能计算方向论文 4 篇（CCF A ×1、SCI 一区 ×1、CCF B ×1、EI ×1）、开放数据挑战赛银牌、国家级学科竞赛奖项 9+ 项。
+  \item \textbf{能力概况：}涵盖 Python、SQL、PyTorch、LightGBM、时序特征工程、异常检测、预测区间、约束优化、模型评测及 FastAPI / Docker 工程化部署；具备数据建模、算法设计、服务治理与业务落地能力。
+\end{itemize}
+
+\section{工作经历}
+
+\resumeentry
+  {星澜能源集团：星澜智慧能源有限公司（海岳数智技术服务有限公司）}
+  {AI 应用开发工程师}
+  {2025.07}{至今}
+\begin{itemize}
+  \item \textbf{新能源功率预测平台：}基于 Temporal Fusion Transformer 与 LightGBM 构建多尺度预测模型；覆盖 60+ 个场站，融合气象与历史功率数据，将日内预测 MAPE 由 16.4\% 降至 8.7\%，调度分析耗时降低 72\%。
+  \item \textbf{智能排产优化引擎：}基于 OR-Tools 与约束建模实现订单、物料和设备协同排程，方案生成时间由 45 分钟缩短至 6 分钟，计划按期达成率由 88.5\% 提升至 96.2\%。
+  \item \textbf{设备异常预警系统：}基于多变量时间序列与无监督异常检测处理日均 120 万条遥测数据，故障召回率达到 93.4\%，误报率降低 38.6\%，可提前 2--6 小时发出预警。
+\end{itemize}
+
+\resumeentry
+  {云栈科技集团：云栈供应链管理有限公司（虚构数字零售企业 Top5）}
+  {算法工程师（实习）}
+  {2025.01}{2025.06}
+\begin{itemize}
+  \item 参与需求预测与库存优化模型开发，完成特征构建、滚动验证、误差分析和在线推理接口封装。
+\end{itemize}
+
+\section{项目经历}
+
+\resumeentry
+  {园区能耗预测与调度平台}
+  {时间序列 / 运筹优化}
+  {2024.08}{2025.01}
+\begin{itemize}
+  \item \textbf{项目背景：}面向商业园区电、冷、热负荷构建预测与调度平台，辅助削峰填谷和设备运行计划制定。
+  \item \textbf{核心技术：}Python、PyTorch、LightGBM、OR-Tools、FastAPI、Redis、Docker。
+  \item \textbf{主要工作：}
+    \begin{enumerate}
+      \item \textbf{数据管线：}接入气象、智能电表和日历数据，完成时间对齐、缺失修复与周期特征构建。
+      \item \textbf{预测模型：}组合 TFT 与梯度提升模型，引入分位数损失和滚动验证输出可信预测区间。
+      \item \textbf{调度优化：}建立容量、峰谷电价和设备启停约束，将示例园区综合调度成本降低 \textcolor{black}{\textbf{12.4\%}}。
+    \end{enumerate}
+\end{itemize}
+
+\section{个人技能}
+\begin{itemize}
+  \item \textbf{编程与框架：}Python、SQL、PyTorch、FastAPI、Git、Docker。
+  \item \textbf{算法与优化：}时间序列预测、异常检测、特征工程、模型评测、运筹优化。
+  \item \textbf{工程化能力：}FastAPI、Redis、Docker、CI/CD、监控告警与服务性能分析。
+\end{itemize}
+
+\section{教育背景}
+\resumeentry
+  {海棠理工大学}
+  {人工智能与数据工程 \quad 本科}
+  {2020.09}{2024.06}
+\begin{itemize}
+  \item \textbf{GPA：}3.7/4.0（专业前 10\%）。
+  \item \textbf{主修课程：}数据结构、机器学习、数据库系统、自然语言处理。
+\end{itemize}
+
+\section{学科竞赛}
+\begin{multicols}{2}
+\begin{itemize}[label={\color{ExampleMono}\faTrophy}]
+  \item 星桥杯智能数据挑战赛全国一等奖
+  \item 全国高校算法应用挑战赛二等奖
+  \item 青年人工智能创新竞赛银奖
+  \item 校级数学建模挑战赛一等奖
+\end{itemize}
+\end{multicols}
+
 \end{document}

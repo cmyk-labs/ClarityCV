@@ -1,21 +1,31 @@
-# 差异化排版示例
+# 独立排版示例
 
-本目录提供 3 个差异明显的 `SimpleCNResume-LaTeX-Template` 风格预设，分别展示经典渐变线、Logo 色块与黑灰极简风格。
+本目录提供三份完整的 ClarityCV 示例。它们与根目录 `claritycv.tex` 使用相同的内容结构、字体、字重、基础字号、章节间距和头部尺寸，差异只由文档类公开的主题参数产生：
 
-证件照及 Logo 均引用项目根目录下的 `images/` 素材。每份示例内部的两段工作经历保持同一种公司栏风格。
+| 示例 | 条目样式 | 主题差异 |
+| --- | --- | --- |
+| `classic-clean.tex` | 普通条目、渐变细线 | 墨蓝主题与砖红强调 |
+| `modern-colorblocks.tex` | Logo 公司色块、较粗章节线 | 深青主题与蓝/珊瑚强调 |
+| `minimal-mono.tex` | 普通条目、极细章节线 | 黑灰单色主题 |
 
-| 风格 | 公司栏 | 项目标题 | 章节与强调 | PDF | 源文件 |
-| --- | --- | --- | --- | --- | --- |
-| 经典简洁 | 黑色普通行 | 黑色、加粗、横杠 | 经典蓝渐变线、暗红结果 | [预览](classic-clean.pdf) | [TeX](classic-clean.tex) |
-| 现代色块 | 双 Logo 品牌色块 | 现代蓝、加粗、竖线 | 现代蓝实线、金色结果 | [预览](modern-colorblocks.pdf) | [TeX](modern-colorblocks.tex) |
-| 黑灰极简 | 黑色普通行 | 黑色、不加粗、竖线 | 黑灰实线、黑色结果 | [预览](minimal-mono.pdf) | [TeX](minimal-mono.tex) |
+每个 `.tex` 都包含完整导言区、头部和正文，不依赖 `\input`、共享正文或 `\Example...` 包装命令。三个示例与根目录 `claritycv.tex` 使用同一套虚构文案及 `images/placeholder-id-photo-transparent.png` 虚构照片，文档类不会裁切图片透明区域。
 
-所有示例共用 [example-content.tex](example-content.tex) 中的虚构正文，并继承类文件最新的姓名样式及自适应前景照片布局。各主文件只负责定义风格组件，因此可以直接复制其中的配置和命令覆盖方式。
+示例正文同时展示：
 
-## 重新编译
+```tex
+\begin{itemize}
+  \item 无编号列举
+\end{itemize}
 
-请在项目根目录执行，例如：
+\begin{enumerate}
+  \item 有编号列举
+\end{enumerate}
+```
+
+从项目根目录单独编译任意示例：
 
 ```bash
+latexmk -xelatex -output-directory=examples examples/classic-clean.tex
 latexmk -xelatex -output-directory=examples examples/modern-colorblocks.tex
+latexmk -xelatex -output-directory=examples examples/minimal-mono.tex
 ```

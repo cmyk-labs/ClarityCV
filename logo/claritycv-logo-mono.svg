@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-labelledby="title desc">
+  <title id="title">ClarityCV monochrome logo</title>
+  <desc id="desc">A monochrome folded document mark beside the ClarityCV wordmark.</desc>
+  <g fill="none" stroke="#243C4D" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M47 14h81l61 61v116c0 9-7 16-16 16H47c-9 0-16-7-16-16V30c0-9 7-16 16-16Z" stroke-width="14"/>
+    <path d="M128 18v40c0 9.39 7.61 17 17 17h40" stroke-width="14"/>
+    <path d="M65 111h84M65 145h65M65 179h42" stroke-width="12"/>
+  </g>
+  <g transform="translate(248)">
+    <text x="0" y="137" fill="#243C4D" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif"
+          font-size="78" font-weight="650" letter-spacing="-2.4" textLength="286" lengthAdjust="spacingAndGlyphs">Clarity</text>
+    <text x="297" y="137" fill="#243C4D" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif"
+          font-size="78" font-weight="780" letter-spacing="-2" textLength="88" lengthAdjust="spacingAndGlyphs">CV</text>
+  </g>
+</svg>

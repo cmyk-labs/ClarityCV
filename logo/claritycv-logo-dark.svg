@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 220" role="img" aria-labelledby="title desc">
+  <title id="title">ClarityCV logo for dark backgrounds</title>
+  <desc id="desc">A refined folded document mark beside the ClarityCV wordmark.</desc>
+  <g>
+    <path d="M47 14h81l61 61v116c0 9-7 16-16 16H47c-9 0-16-7-16-16V30c0-9 7-16 16-16Z"
+          fill="none" stroke="#F5F7F9" stroke-width="14" stroke-linejoin="round"/>
+    <path d="M128 14v44c0 9.39 7.61 17 17 17h44Z" fill="#F08363"/>
+    <path d="M128 18v40c0 9.39 7.61 17 17 17h40"
+          fill="none" stroke="#F5F7F9" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M65 111h84M65 145h65" fill="none" stroke="#F5F7F9" stroke-width="12" stroke-linecap="round"/>
+    <path d="M65 179h42" fill="none" stroke="#F08363" stroke-width="12" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(248)">
+    <text x="0" y="137" fill="#F5F7F9" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif"
+          font-size="78" font-weight="650" letter-spacing="-2.4" textLength="286" lengthAdjust="spacingAndGlyphs">Clarity</text>
+    <text x="297" y="137" fill="#F08363" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif"
+          font-size="78" font-weight="780" letter-spacing="-2" textLength="88" lengthAdjust="spacingAndGlyphs">CV</text>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-labelledby="title desc">
+  <title id="title">ClarityCV document mark</title>
+  <desc id="desc">A refined folded document with aligned content lines.</desc>
+  <path d="M47 14h81l61 61v116c0 9-7 16-16 16H47c-9 0-16-7-16-16V30c0-9 7-16 16-16Z"
+        fill="#FFFFFF" stroke="#153B55" stroke-width="14" stroke-linejoin="round"/>
+  <path d="M128 14v44c0 9.39 7.61 17 17 17h44Z" fill="#E16F4F"/>
+  <path d="M128 18v40c0 9.39 7.61 17 17 17h40"
+        fill="none" stroke="#153B55" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M65 111h84M65 145h65" fill="none" stroke="#153B55" stroke-width="12" stroke-linecap="round"/>
+  <path d="M65 179h42" fill="none" stroke="#E16F4F" stroke-width="12" stroke-linecap="round"/>
+</svg>

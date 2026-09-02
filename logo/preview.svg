@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">ClarityCV document logo presentation</title>
+  <desc id="desc">Primary document logo, standalone symbol, small-size test, dark-background version, and monochrome version.</desc>
+  <defs>
+    <symbol id="mark" viewBox="0 0 220 220">
+      <path d="M47 14h81l61 61v116c0 9-7 16-16 16H47c-9 0-16-7-16-16V30c0-9 7-16 16-16Z" fill="#FFFFFF" stroke="#153B55" stroke-width="14" stroke-linejoin="round"/>
+      <path d="M128 14v44c0 9.39 7.61 17 17 17h44Z" fill="#E16F4F"/>
+      <path d="M128 18v40c0 9.39 7.61 17 17 17h40" fill="none" stroke="#153B55" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M65 111h84M65 145h65" fill="none" stroke="#153B55" stroke-width="12" stroke-linecap="round"/>
+      <path d="M65 179h42" fill="none" stroke="#E16F4F" stroke-width="12" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="mark-dark" viewBox="0 0 220 220">
+      <path d="M47 14h81l61 61v116c0 9-7 16-16 16H47c-9 0-16-7-16-16V30c0-9 7-16 16-16Z" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linejoin="round"/>
+      <path d="M128 14v44c0 9.39 7.61 17 17 17h44Z" fill="#F08363"/>
+      <path d="M128 18v40c0 9.39 7.61 17 17 17h40" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M65 111h84M65 145h65" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round"/>
+      <path d="M65 179h42" fill="none" stroke="#F08363" stroke-width="12" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="mark-mono" viewBox="0 0 220 220">
+      <path d="M47 14h81l61 61v116c0 9-7 16-16 16H47c-9 0-16-7-16-16V30c0-9 7-16 16-16Z" fill="none" stroke="#243C4D" stroke-width="14" stroke-linejoin="round"/>
+      <path d="M128 14v44c0 9.39 7.61 17 17 17h44Z" fill="#243C4D" opacity="0.16"/>
+      <path d="M128 18v40c0 9.39 7.61 17 17 17h40" fill="none" stroke="#243C4D" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M65 111h84M65 145h65M65 179h42" fill="none" stroke="#243C4D" stroke-width="12" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+
+  <rect width="1200" height="900" fill="#F2F5F7"/>
+  <text x="64" y="70" fill="#172C3B" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="34" font-weight="700">ClarityCV · Refined Document Mark</text>
+  <text x="64" y="104" fill="#71808A" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="17">A precise page outline, a warm folded corner, and clear editorial rhythm.</text>
+
+  <g>
+    <rect x="64" y="136" width="1072" height="266" rx="24" fill="#FFFFFF" stroke="#DBE3E8"/>
+    <text x="94" y="177" fill="#89969E" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2.2">PRIMARY LOGO</text>
+    <use href="#mark" x="160" y="185" width="172" height="172"/>
+    <text x="375" y="291" fill="#172C3B" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="78" font-weight="650" letter-spacing="-2.4" textLength="286" lengthAdjust="spacingAndGlyphs">Clarity</text>
+    <text x="672" y="291" fill="#E16F4F" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="78" font-weight="780" letter-spacing="-2" textLength="88" lengthAdjust="spacingAndGlyphs">CV</text>
+  </g>
+
+  <g>
+    <rect x="64" y="432" width="330" height="392" rx="22" fill="#FFFFFF" stroke="#DBE3E8"/>
+    <text x="92" y="474" fill="#89969E" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2.1">SYMBOL</text>
+    <use href="#mark" x="136" y="504" width="186" height="186"/>
+    <line x1="92" y1="718" x2="366" y2="718" stroke="#E4EAEE"/>
+    <text x="92" y="755" fill="#71808A" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="14">Small-size test</text>
+    <use href="#mark" x="235" y="737" width="54" height="54"/>
+    <use href="#mark" x="314" y="748" width="32" height="32"/>
+  </g>
+
+  <g>
+    <rect x="435" y="432" width="330" height="392" rx="22" fill="#172C3B"/>
+    <text x="463" y="474" fill="#A9B5BC" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2.1">DARK</text>
+    <use href="#mark-dark" x="508" y="505" width="184" height="184"/>
+    <text x="489" y="754" fill="#FFFFFF" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="44" font-weight="650" letter-spacing="-1.5" textLength="163" lengthAdjust="spacingAndGlyphs">Clarity</text>
+    <text x="659" y="754" fill="#F08363" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="44" font-weight="780" textLength="51" lengthAdjust="spacingAndGlyphs">CV</text>
+  </g>
+
+  <g>
+    <rect x="806" y="432" width="330" height="392" rx="22" fill="#FFFFFF" stroke="#DBE3E8"/>
+    <text x="834" y="474" fill="#89969E" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="2.1">MONOCHROME</text>
+    <use href="#mark-mono" x="879" y="505" width="184" height="184"/>
+    <text x="859" y="754" fill="#243C4D" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="44" font-weight="650" letter-spacing="-1.5" textLength="163" lengthAdjust="spacingAndGlyphs">Clarity</text>
+    <text x="1029" y="754" fill="#243C4D" font-family="Inter,Aptos,Segoe UI,Arial,sans-serif" font-size="44" font-weight="780" textLength="51" lengthAdjust="spacingAndGlyphs">CV</text>
+  </g>
+</svg>
