@@ -70,6 +70,7 @@ Click a preview to open its PDF, or select **Source** to inspect the correspondi
 
 - TeX Live 2022 or later, or a recent MiKTeX release.
 - XeLaTeX as the compiler.
+- The v4 typography defaults require Times New Roman, SimSun, and SimHei to be installed on the system.
 - The complete project directory, including the class, fonts, and images.
 
 ### Compile
@@ -87,7 +88,7 @@ xelatex claritycv.tex
 xelatex claritycv.tex
 ```
 
-On Overleaf, upload the complete project, choose **XeLaTeX**, and set `claritycv.tex` as the main document.
+On Overleaf, upload the complete project, choose **XeLaTeX**, and set `claritycv.tex` as the main document. Because Overleaf does not provide these Windows fonts by default, upload legally licensed font files or select an available font set in `claritycv.cls`.
 
 ## Minimal example
 
@@ -120,7 +121,7 @@ Only four template-specific commands are required:
 | --- | --- |
 | `\resumesetup{...}` | Override document-wide visual defaults |
 | `\resumeheader[...]{Name}{Contacts}` | Render the name, contact area, and optional portrait |
-| `\resumecontact{Icon}{Content}` | Add one contact item with automatic wrapping |
+| `\resumecontact[...]{Icon}{Content}` | Add one contact item with automatic wrapping |
 | `\resumeentry[...]{Title}{Subtitle}{Start}{End}` | Render a plain or banner entry with a generated date range |
 
 Everything else should use standard LaTeX wherever possible.
@@ -135,38 +136,97 @@ The recommended appearance already lives in `claritycv.cls`. Call `\resumesetup`
   color=MyTheme,
   font=modern,
   section-line=gradient,
-  entry-separator=bar
+  entry-separator=bar,
+  entry-title-weight=bold,
+  entry-subtitle-weight=bold,
+  entry-date-weight=regular,
+  entry-banner-tint=6,
+  header-name-color=ResumePrimary,
+  header-name-weight=inherit,
+  header-photo-align=center,
+  header-name-gap=0.78em,
+  header-after-skip=0.98em,
+  contact-icon-color=black,
+  contact-text-color=black
 }
 ```
+
+Styles use three override levels: the class supplies polished defaults, `\resumesetup` changes the whole document, and keys in a command's optional argument affect that invocation only. Global keys use the `entry-`, `header-`, `contact-`, or `number-` prefix; local keys omit that prefix. The root `claritycv.tex` declares no duplicate global setup and directly demonstrates the class defaults; each example overrides only values that differ from that baseline.
 
 | Key | Accepted values | Default |
 | --- | --- | --- |
 | `color` | Any defined color | `ResumeClassic` |
+| `accent-color` | Any defined color | `ResumeAccent` (standard red) |
+| `muted-color` | Any defined color | `ResumeMuted` |
+| `divider-color` | Any defined color | `ResumeDivider` |
 | `font` | `classic`, `modern` | `classic` |
 | `section-font` | `simhei`, `modern` | `simhei` |
 | `section-font-name` | Installed font name | not set |
 | `section-line` | `solid`, `gradient` | `solid` |
-| `section-size` | LaTeX length | `12.4bp` |
-| `body-size` | LaTeX length | `9.2pt` |
-| `name-weight` | `inherit`, `regular`, `bold` | `inherit` |
+| `section-size` | LaTeX length | `14bp` |
+| `body-size` | LaTeX length | `9pt` |
 | `section-weight` | `regular`, `bold` | `bold` |
 | `entry-style` | `plain`, `banner` | `plain` |
-| `entry-color` | Any defined color | `black` |
+| `entry-color` | Any defined color | `ResumePrimary` |
 | `entry-separator` | `dash`, `bar` | `dash` |
-| `entry-weight` | `regular`, `bold` | `bold` |
-| `section-before-skip` | LaTeX length | `0.85em` |
+| `entry-title-weight` | `regular`, `bold` | `bold` |
+| `entry-subtitle-weight` | `regular`, `bold` | `bold` |
+| `entry-date-weight` | `regular`, `bold` | `regular` |
+| `entry-title-color` | `entry` or any defined color | `entry` |
+| `entry-subtitle-color` | `entry` or any defined color | `entry` |
+| `entry-date-color` | `entry` or any defined color | `ResumeMuted` |
+| `entry-heading-size` | LaTeX length | `9.4pt` |
+| `entry-divider` | `none`, `before`, `after` | `none` |
+| `entry-date-width` | LaTeX length | `9.3em` |
+| `entry-text-shift` | LaTeX length; banner only | `0.4ex` |
+| `entry-padding-left` | LaTeX length; banner only | `0.72em` |
+| `entry-padding-right` | LaTeX length; banner only | `0pt` |
+| `entry-padding-y` | LaTeX length; banner only | `0.14em` |
+| `entry-banner-tint` | Mix percentage from `0` to `100` | `6` |
+| `entry-banner-border-width` | LaTeX length | `2.5pt` |
+| `entry-banner-radius` | LaTeX length | `2pt` |
+| `entry-before-skip` | Previous body to next entry heading | `0.65em` |
+| `entry-after-skip` | Unified additional heading-to-body distance | `0.1em` |
+| `header-name-size` | LaTeX length | `16bp` |
+| `header-name-color` | Any defined color | `ResumePrimary` |
+| `header-name-weight` | `inherit`, `regular`, `bold` | `inherit` |
+| `header-layout` | `overlay`, `flow` | `overlay` |
+| `header-photo-align` | `top`, `center`, `bottom` | `center` |
+| `header-photo-width` | LaTeX length | `2.75cm` |
+| `header-photo-max-height` | LaTeX length | `3.15cm` |
+| `header-photo-line-gap` | LaTeX length | `0.18em` |
+| `header-photo-x-shift` | LaTeX length | `0pt` |
+| `header-photo-y-shift` | LaTeX length | `0pt` |
+| `header-column-gap` | LaTeX length | `1em` |
+| `header-name-gap` | LaTeX length | `0.78em` |
+| `header-after-skip` | LaTeX length | `0.98em` |
+| `contact-icon-color` | Any defined color | `black` |
+| `contact-text-color` | Any defined color | `black` |
+| `contact-icon-size` | LaTeX length | `10.5bp` |
+| `contact-text-size` | LaTeX length | follows `body-size` |
+| `contact-text-weight` | `regular`, `bold` | `regular` |
+| `contact-icon-width` | LaTeX length | `1.25em` |
+| `contact-icon-gap` | LaTeX length | `0.28em` |
+| `contact-item-gap` | LaTeX length | `0.8em` |
+| `number-color` | `inherit` or any defined color | `inherit` |
+| `number-weight` | `inherit`, `regular`, `bold` | `bold` |
+| `number-scale` | Positive scale factor | `1` |
+| `section-before-skip` | LaTeX length | `0.2em` |
 | `section-line-gap` | LaTeX length | `0.24em` |
-| `section-after-skip` | LaTeX length | `0.38em` |
+| `section-after-skip` | LaTeX length | `0.55em` |
+| `section-list-extra-skip` | LaTeX length | `3.5pt` |
 | `section-line-width` | LaTeX length | `0.55pt` |
 
 ## Header and portrait
 
-The name size belongs to `\resumeheader`, not the document-wide style:
+Name styling and header layout can be set globally with the `header-...` keys above or overridden for one header. The portrait path belongs to the current header only:
 
 ```tex
 \resumeheader[
   photo={images/avatar.png},
   name-size=16bp,
+  name-color=ResumePrimary,
+  name-weight=inherit,
   photo-x-shift=-1mm,
   photo-y-shift=0.5mm
 ]{Your Name}{Contact information}
@@ -174,20 +234,22 @@ The name size belongs to `\resumeheader`, not the document-wide style:
 
 | Key | Accepted values | Default |
 | --- | --- | --- |
-| `name-size` | LaTeX length | `14.8bp` |
+| `name-size` | LaTeX length | `16bp` |
+| `name-color` | Any defined color | `ResumePrimary` |
+| `name-weight` | `inherit`, `regular`, `bold` | `inherit` |
 | `photo` | Image path or `none` | no portrait |
 | `layout` | `overlay`, `flow` | `overlay` |
-| `align` | `top`, `center`, `bottom` | `bottom` |
+| `align` | `top`, `center`, `bottom` | `center` |
 | `photo-width` | LaTeX length | `2.75cm` |
 | `photo-max-height` | LaTeX length | `3.15cm` |
 | `photo-line-gap` | LaTeX length | `0.18em` |
 | `photo-x-shift` | Negative left, positive right | `0pt` |
 | `photo-y-shift` | Negative down, positive up | `0pt` |
 | `column-gap` | LaTeX length | `1em` |
-| `name-gap` | LaTeX length | `0.35em` |
-| `after-skip` | LaTeX length | `0.15em` |
+| `name-gap` | LaTeX length | `0.78em` |
+| `after-skip` | LaTeX length | `0.98em` |
 
-The image is scaled proportionally within its maximum width and height. ClarityCV does not crop transparent or blank regions from the source image.
+The portrait is scaled proportionally within the available height between the top of the identity block and the first section rule, then positioned by `align`; the default is centered. ClarityCV does not crop transparent or blank regions from the source image.
 
 Omit `photo` or use `photo=none` for a text-only header:
 
@@ -195,12 +257,44 @@ Omit `photo` or use `photo=none` for a text-only header:
 \resumeheader{Your Name}{Contact information}
 ```
 
+## Contact items
+
+Contact items also support global and per-call overrides. This example changes only one icon and text style:
+
+```tex
+\resumecontact[
+  icon-color=ResumePrimary,
+  text-size=8.8pt,
+  text-weight=bold
+]{\faPhone}{Phone: 138-0000-0000}
+```
+
+| Key | Accepted values | Default |
+| --- | --- | --- |
+| `icon-color` | Any defined color | global `contact-icon-color` |
+| `text-color` | Any defined color | global `contact-text-color` |
+| `icon-size` | LaTeX length | global `contact-icon-size` |
+| `text-size` | LaTeX length | global `contact-text-size` |
+| `text-weight` | `regular`, `bold` | global `contact-text-weight` |
+| `icon-width` | Icon column width when wrapping | global `contact-icon-width` |
+| `icon-gap` | Space between icon and text | global `contact-icon-gap` |
+| `item-gap` | Space between adjacent contact items | global `contact-item-gap` |
+
 ## Entries and date ranges
 
 For a plain entry:
 
 ```tex
 \resumeentry{Organization}{Role}{2023.07}{2025.03}
+```
+
+For example, an education entry can override only its title colors while leaving size, weight, dates, and spacing inherited:
+
+```tex
+\resumeentry[
+  title-color=black,
+  subtitle-color=black
+]{Example University}{Computer Science}{2020.09}{2024.06}
 ```
 
 For a branded banner:
@@ -211,11 +305,14 @@ For a branded banner:
   color=ResumeSky,
   logo={images/logo-stellar-tech.png},
   separator=bar,
-  weight=bold
+  title-weight=bold,
+  subtitle-weight=bold,
+  date-weight=regular,
+  banner-tint=6
 ]{Company}{Position}{2024.07}{Present}
 ```
 
-The final two arguments are always the start and end values. Do not type `--` or surrounding spaces; the class generates them consistently.
+The final two arguments are always the start and end values. Do not type a separator or surrounding spaces; the class generates them consistently. Except for `logo`, each per-entry key below inherits its matching `entry-...` key from `\resumesetup`.
 
 | Key | Accepted values | Default |
 | --- | --- | --- |
@@ -223,13 +320,26 @@ The final two arguments are always the start and end values. Do not type `--` or
 | `color` | Any defined color | global `entry-color` |
 | `logo` | Image path | none |
 | `separator` | `dash`, `bar` | global `entry-separator` |
-| `weight` | `regular`, `bold` | global `entry-weight` |
-| `divider` | `none`, `before`, `after` | `none` |
-| `date-width` | LaTeX length | `9.3em` |
-| `text-shift` | LaTeX length; banner only | `0.4ex` |
-| `padding-y` | LaTeX length; banner only | `0.14em` |
+| `title-weight` | `regular`, `bold` | global `entry-title-weight` |
+| `subtitle-weight` | `regular`, `bold` | global `entry-subtitle-weight` |
+| `date-weight` | `regular`, `bold` | global `entry-date-weight` |
+| `title-color` | `entry` or any defined color | global `entry-title-color` |
+| `subtitle-color` | `entry` or any defined color | global `entry-subtitle-color` |
+| `date-color` | `entry` or any defined color | global `entry-date-color` |
+| `heading-size` | LaTeX length | global `entry-heading-size` |
+| `divider` | `none`, `before`, `after` | global `entry-divider` |
+| `date-width` | LaTeX length | global `entry-date-width` |
+| `text-shift` | LaTeX length; banner only | global `entry-text-shift` |
+| `padding-left` | LaTeX length; banner only | global `entry-padding-left` |
+| `padding-right` | LaTeX length; banner only | global `entry-padding-right` |
+| `padding-y` | LaTeX length; banner only | global `entry-padding-y` |
+| `banner-tint` | Mix percentage from `0` to `100` | global `entry-banner-tint` |
+| `banner-border-width` | LaTeX length | global `entry-banner-border-width` |
+| `banner-radius` | LaTeX length | global `entry-banner-radius` |
+| `before-skip` | Previous body to this entry heading | global `entry-before-skip` |
+| `after-skip` | This entry heading to body, additional | global `entry-after-skip` |
 
-Use `weight=regular` when one entry should not be bold.
+The default keeps the v4 title relationship while improving scan hierarchy: the title and subtitle are both bold theme-colored `9.4pt`, the date is regular muted text, and body lead-ins remain bold black `9pt`. Adjust the three weights independently with `title-weight`, `subtitle-weight`, and `date-weight`.
 
 ## Standard LaTeX content
 
@@ -251,7 +361,43 @@ Use `enumerate` for numbered steps:
 \end{enumerate}
 ```
 
-The class supplies résumé-friendly spacing and theme-colored markers while preserving normal nesting behavior.
+Project steps can also use three Chinese-style number formats. Their default forms stay short and now share a stronger visual weight:
+
+```tex
+\begin{enumerate}
+  \item Data pipeline: \cvC{1}ingest data; \cvC{2}clean data.
+  \item Forecasting: \cvP{1}train models; \cvP{2}run rolling validation.
+  \item Optimization: \cvR{1}define constraints; \cvR{2}solve the plan.
+\end{enumerate}
+```
+
+The three commands output circled, full-parenthesized, and right-parenthesized numbers. Circled numbers support `1`--`10` and fall back to a regular circled form above that range.
+
+The circled-number font has no separate bold face, so `number-weight=bold` applies a `1.06` optical scale to it while the two parenthesized forms use a real bold face. Set all inline numbers globally with:
+
+```tex
+\resumesetup{
+  number-color=inherit,
+  number-weight=bold,
+  number-scale=1
+}
+```
+
+Each number can override the same short keys without affecting its neighbors:
+
+```tex
+\cvC[color=ResumePrimary,weight=regular,scale=1.05]{1}
+\cvP[weight=regular]{1}
+\cvR[scale=1.08]{1}
+```
+
+| Local key | Accepted values | Default |
+| --- | --- | --- |
+| `color` | `inherit` or any defined color | global `number-color` |
+| `weight` | `inherit`, `regular`, `bold` | global `number-weight` |
+| `scale` | Positive scale factor | global `number-scale` |
+
+The class supplies résumé-friendly spacing and theme-colored list markers while preserving normal nesting behavior.
 
 Links and emphasis also use standard commands:
 

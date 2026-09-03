@@ -1,12 +1,14 @@
 % !TeX program = xelatex
-% 与 claritycv.tex 共用内容结构和基础尺寸，仅通过公开参数切换为现代色块风格；全部信息均为虚构。
+% 继承 claritycv.cls 默认风格，只覆盖现代色块风格与默认值不同的参数；全部信息均为虚构。
 \documentclass{claritycv}
 \definecolor{ExampleModernNavy}{RGB}{13,76,101}
 \definecolor{ExampleModernBlue}{RGB}{14,137,190}
-\definecolor{ExampleModernCoral}{RGB}{218,91,78}
 \resumesetup{
   color=ExampleModernNavy,
   section-line-width=0.8pt,
+  entry-title-color=ExampleModernNavy,
+  entry-subtitle-color=ExampleModernNavy,
+  entry-banner-tint=7,
   entry-separator=bar
 }
 
@@ -17,10 +19,10 @@
 ]{林知远}{%
   \resumecontact{\faPhone}{联系电话：138-0000-0000}
   \resumecontact{\faEnvelope}{邮箱：\href{mailto:lin.zhiyuan.ai@example.com}{\nolinkurl{lin.zhiyuan.ai@example.com}}}\\
-  \resumecontact{\faGlobe}{技术博客：\href{https://example.com/lin-ai-lab}{\nolinkurl{https://example.com/lin-ai-lab}} \textcolor{ExampleModernCoral}{\textbf{（28万+访问量）}}}
+  \resumecontact{\faGlobe}{技术博客：\href{https://example.com/lin-ai-lab}{\nolinkurl{https://example.com/lin-ai-lab}} \textcolor{ResumeAccent}{\textbf{（28万+访问量）}}}
   \\
   \resumecontact{\faGithub}{代码主页：\href{https://example.com/lin-zhiyuan-code}{\nolinkurl{https://example.com/lin-zhiyuan-code}}}\\
-  \resumecontact{\faGithub}{项目贡献：\href{https://example.com/chronos-lab}{ChronosLab}\textcolor{ExampleModernCoral}{(\faStar\hspace{0.25em}\textbf{4.8k stars})}、\href{https://example.com/opti-grid}{OptiGrid} \textcolor{ExampleModernCoral}{(\faStar\hspace{0.25em}\textbf{36.2k stars})}}
+  \resumecontact{\faGithub}{项目贡献：\href{https://example.com/chronos-lab}{ChronosLab}\textcolor{ResumeAccent}{(\faStar\hspace{0.25em}\textbf{4.8k stars})}、\href{https://example.com/opti-grid}{OptiGrid} \textcolor{ResumeAccent}{(\faStar\hspace{0.25em}\textbf{36.2k stars})}}
 }
 
 \section{个人简介}
@@ -36,12 +38,12 @@
   {AI 应用开发工程师}
   {2025.07}{至今}
 \begin{itemize}
-  \item \textbf{新能源功率预测平台：}基于 Temporal Fusion Transformer 与 LightGBM 构建多尺度预测模型；覆盖 60+ 个场站，融合气象与历史功率数据，将日内预测 MAPE 由 16.4\% 降至 8.7\%，调度分析耗时降低 72\%。
+  \item \textbf{新能源功率预测平台：}基于 TFT 与 LightGBM 服务 60+ 个场站，日内预测 MAPE 由 16.4\% 降至 8.7\%，分析耗时降低 72\%。
   \item \textbf{智能排产优化引擎：}基于 OR-Tools 与约束建模实现订单、物料和设备协同排程，方案生成时间由 45 分钟缩短至 6 分钟，计划按期达成率由 88.5\% 提升至 96.2\%。
   \item \textbf{设备异常预警系统：}基于多变量时间序列与无监督异常检测处理日均 120 万条遥测数据，故障召回率达到 93.4\%，误报率降低 38.6\%，可提前 2--6 小时发出预警。
 \end{itemize}
 
-\resumeentry[style=banner,color=ExampleModernCoral,logo={images/logo-cloud-lab.png}]
+\resumeentry[style=banner,color=ResumePink,logo={images/logo-cloud-lab.png}]
   {云栈科技集团：云栈供应链管理有限公司（虚构数字零售企业 Top5）}
   {算法工程师（实习）}
   {2025.01}{2025.06}
@@ -51,7 +53,7 @@
 
 \section{项目经历}
 
-\resumeentry[color=ExampleModernNavy,separator=bar]
+\resumeentry[separator=bar]
   {园区能耗预测与调度平台}
   {时间序列 / 运筹优化}
   {2024.08}{2025.01}
@@ -60,10 +62,19 @@
   \item \textbf{核心技术：}Python、PyTorch、LightGBM、OR-Tools、FastAPI、Redis、Docker。
   \item \textbf{主要工作：}
     \begin{enumerate}
-      \item \textbf{数据管线：}接入气象、智能电表和日历数据，完成时间对齐、缺失修复与周期特征构建。
-      \item \textbf{预测模型：}组合 TFT 与梯度提升模型，引入分位数损失和滚动验证输出可信预测区间。
-      \item \textbf{调度优化：}建立容量、峰谷电价和设备启停约束，将示例园区综合调度成本降低 \textcolor{ExampleModernCoral}{\textbf{12.4\%}}。
+      \item \textbf{数据管线：}\cvC{1}接入气象、智能电表和日历数据；\cvC{2}完成时间对齐、缺失修复与周期特征构建。
+      \item \textbf{预测模型：}\cvP{1}组合 TFT 与梯度提升模型；\cvP{2}引入分位数损失和滚动验证，输出可信预测区间。
+      \item \textbf{调度优化：}\cvR{1}建立容量、峰谷电价和设备启停约束；\cvR{2}将示例园区综合调度成本降低 \textcolor{ResumeAccent}{\textbf{12.4\%}}。
     \end{enumerate}
+\end{itemize}
+
+\resumeentry
+  {设备异常监测与预警系统}
+  {异常检测 / 在线推理}
+  {2024.03}{2024.07}
+\begin{itemize}
+  \item \textbf{项目方案：}基于 PyTorch 与 Isolation Forest 处理工业设备遥测，使用 FastAPI、Redis 和 Docker 部署实时分级预警服务。
+  \item \textbf{项目成果：}日均处理 120 万条数据，故障召回率达到 \textcolor{ResumeAccent}{\textbf{93.4\%}}，误报率降低 \textcolor{ResumeAccent}{\textbf{38.6\%}}。
 \end{itemize}
 
 \section{个人技能}
@@ -74,7 +85,7 @@
 \end{itemize}
 
 \section{教育背景}
-\resumeentry[color=black]
+\resumeentry[title-color=black,subtitle-color=black]
   {海棠理工大学}
   {人工智能与数据工程 \quad 本科}
   {2020.09}{2024.06}
@@ -85,7 +96,7 @@
 
 \section{学科竞赛}
 \begin{multicols}{2}
-\begin{itemize}[label={\color{ExampleModernNavy}\faTrophy}]
+\begin{itemize}[label={\color{ResumePrimary}\faTrophy}]
   \item 星桥杯智能数据挑战赛全国一等奖
   \item 全国高校算法应用挑战赛二等奖
   \item 青年人工智能创新竞赛银奖

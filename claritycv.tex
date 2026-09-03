@@ -4,39 +4,26 @@
 
 \documentclass{claritycv}
 
-% 可选全局配置：\resumesetup{键=值,...}；不调用时直接使用下面的类默认值。
-% color：主题色；默认 ResumeClassic；已定义颜色名 -> 改变姓名、章节线和列表标记颜色。
-% font：正文风格；默认 classic；classic -> 衬线，modern -> 无衬线。
-% section-font：章节字体；默认 simhei；simhei -> 传统黑体，modern -> 现代无衬线字体。
-% section-font-name：自定义章节字体；默认不设置；已安装字体名 -> 覆盖 section-font。
-% section-line：章节线；默认 solid；solid -> 纯色线，gradient -> 主题色渐变线。
-% section-size：章节字号；默认 12.4bp；填写 LaTeX 长度 -> 调整章节标题大小。
-% body-size：正文字号；默认 9.2pt；填写 LaTeX 长度 -> 调整正文大小。
-% name-weight：姓名字重；默认 inherit；inherit -> 跟随章节，regular -> 常规，bold -> 加粗。
-% section-weight：章节字重；默认 bold；regular -> 常规，bold -> 加粗。
-% entry-style：条目样式；默认 plain；plain -> 普通行，banner -> 浅色背景和左色条。
-% entry-color：条目颜色；默认 black；已定义颜色名 -> 改变条目标题和 banner 颜色。
-% entry-separator：标题分隔符；默认 dash；dash -> 短横线，bar -> 竖线。
-% entry-weight：条目字重；默认 bold；regular -> 常规，bold -> 加粗。
-% section-before-skip：章节上方间距；默认 0.85em；LaTeX 长度越大 -> 间距越宽。
-% section-line-gap：标题与章节线距离；默认 0.24em；值为 LaTeX 长度。
-% section-after-skip：章节线与正文距离；默认 0.38em；值为 LaTeX 长度。
-% section-line-width：章节线粗细；默认 0.55pt；值为 LaTeX 长度。
+% claritycv.tex 即默认风格；字体、颜色、字号、间距等默认值全部定义在 claritycv.cls。
+% 需要整份简历换风格时再使用 \resumesetup；当前文件只保留内容和必要的单条覆盖。
 \begin{document}
 
 % \resumeheader[键=值,...]{姓名}{联系信息}：设置头部；省略 photo 时不显示照片。
-% name-size：姓名字号；默认 14.8bp；填写 LaTeX 长度 -> 仅调整本次头部的姓名大小。
+% name-size：姓名字号；默认 16bp；填写 LaTeX 长度 -> 仅调整本次头部的姓名大小。
+% name-color / name-weight：姓名颜色 / 字重；默认 ResumePrimary / inherit；只覆盖本次头部。
 % photo：照片来源；图片路径 -> 显示照片，none -> 不显示照片；只按比例缩放，不裁切透明区。
 % layout：照片布局；默认 overlay；overlay -> 叠放，flow -> 参与左右分栏。
-% align：flow 纵向对齐；默认 bottom；top -> 顶部，center -> 居中，bottom -> 底部。
+% align：照片纵向对齐；默认 center；overlay 和 flow 均支持 top、center、bottom。
 % photo-width：照片最大宽度；默认 2.75cm；值为 LaTeX 长度。
 % photo-max-height：照片最大高度；默认 3.15cm；值为 LaTeX 长度。
 % photo-line-gap：照片与首个章节线距离；默认 0.18em；值为 LaTeX 长度。
 % photo-x-shift：水平位移；默认 0pt；负值 -> 左，正值 -> 右。
 % photo-y-shift：垂直位移；默认 0pt；负值 -> 下，正值 -> 上。
 % column-gap：信息与照片栏间距；默认 1em；值为 LaTeX 长度。
-% name-gap：姓名与联系信息间距；默认 0.35em；值为 LaTeX 长度。
-% after-skip：头部后的间距；默认 0.15em；值为 LaTeX 长度。
+% name-gap：姓名与联系信息间距；默认 0.78em；值为 LaTeX 长度。
+% after-skip：头部后的间距；默认 0.98em；值为 LaTeX 长度。
+% \resumecontact[键=值,...]{图标}{内容}：图标与文字可分别覆盖 color / size，文字还可覆盖 weight。
+% 其他局部键为 icon-width、icon-gap、item-gap；均继承 contact- 开头的全局参数。
 \resumeheader[
   photo={images/placeholder-id-photo-transparent.png}
 ]{林知远}{%
@@ -58,25 +45,23 @@
 
 % \resumeentry[键=值,...]{主标题}{副标题}{开始时间}{结束时间}：时间连接符和间距由类生成。
 % style：条目样式；默认 plain；plain -> 普通行，banner -> 带浅色背景和左色条。
-% color：条目颜色；默认 black；已定义颜色名 -> 标题、左色条和 banner 背景使用该颜色。
+% color：本条强调色；默认继承全局 entry-color。
 % logo：条目图标；默认不显示；图片路径 -> 在 banner 左侧显示。
 % separator：主、副标题分隔符；默认继承 entry-separator（dash）；dash -> 短横线，bar -> 竖线。
-% weight：本条字重；regular -> 常规，bold -> 加粗；省略 -> 继承 entry-weight（默认 bold）。
-% divider：附加分隔线；默认 none；none -> 不显示，before -> 条目前，after -> 条目后。
-% date-width：右侧时间列宽度；默认 9.3em；值为 LaTeX 长度。
-% text-shift：banner 文字纵向位移；默认 0.4ex；负值 -> 下，正值 -> 上。
-% padding-y：banner 上下内边距；默认 0.14em；LaTeX 长度越大 -> 色块越高。
-\resumeentry[style=banner,color=ResumePrimary]
+% title-weight / subtitle-weight / date-weight：分别覆盖三级字重。
+% title-color / subtitle-color / date-color：分别覆盖三级颜色；entry 表示继承本条 color。
+% 其他参数均与全局同名参数对应，只需去掉 entry- 前缀。
+\resumeentry[style=banner]
   {星澜能源集团：星澜智慧能源有限公司（海岳数智技术服务有限公司）}
   {AI 应用开发工程师}
   {2025.07}{至今}
 \begin{itemize}
-  \item \textbf{新能源功率预测平台：}基于 Temporal Fusion Transformer 与 LightGBM 构建多尺度预测模型；覆盖 60+ 个场站，融合气象与历史功率数据，将日内预测 MAPE 由 16.4\% 降至 8.7\%，调度分析耗时降低 72\%。
+  \item \textbf{新能源功率预测平台：}基于 TFT 与 LightGBM 服务 60+ 个场站，日内预测 MAPE 由 16.4\% 降至 8.7\%，分析耗时降低 72\%。
   \item \textbf{智能排产优化引擎：}基于 OR-Tools 与约束建模实现订单、物料和设备协同排程，方案生成时间由 45 分钟缩短至 6 分钟，计划按期达成率由 88.5\% 提升至 96.2\%。
   \item \textbf{设备异常预警系统：}基于多变量时间序列与无监督异常检测处理日均 120 万条遥测数据，故障召回率达到 93.4\%，误报率降低 38.6\%，可提前 2--6 小时发出预警。
 \end{itemize}
 
-\resumeentry[style=banner,color=ResumeAccent]
+\resumeentry[style=banner]
   {云栈科技集团：云栈供应链管理有限公司（虚构数字零售企业 Top5）}
   {算法工程师（实习）}
   {2025.01}{2025.06}
@@ -86,7 +71,7 @@
 
 \section{项目经历}
 
-\resumeentry[color=ResumePrimary]
+\resumeentry
   {园区能耗预测与调度平台}
   {时间序列 / 运筹优化}
   {2024.08}{2025.01}
@@ -95,11 +80,22 @@
   \item \textbf{核心技术：}Python、PyTorch、LightGBM、OR-Tools、FastAPI、Redis、Docker。
   \item \textbf{主要工作：}
     \begin{enumerate}
-      \item \textbf{数据管线：}接入气象、智能电表和日历数据，完成时间对齐、缺失修复与周期特征构建。
-      \item \textbf{预测模型：}组合 TFT 与梯度提升模型，引入分位数损失和滚动验证输出可信预测区间。
-      \item \textbf{调度优化：}建立容量、峰谷电价和设备启停约束，将示例园区综合调度成本降低 \textcolor{ResumeAccent}{\textbf{12.4\%}}。
+      \item \textbf{数据管线：}\cvC{1}接入气象、智能电表和日历数据；\cvC{2}完成时间对齐、缺失修复与周期特征构建。
+      \item \textbf{预测模型：}\cvP{1}组合 TFT 与梯度提升模型；\cvP{2}引入分位数损失和滚动验证，输出可信预测区间。
+      \item \textbf{调度优化：}\cvR{1}建立容量、峰谷电价和设备启停约束；\cvR{2}将示例园区综合调度成本降低 \textcolor{ResumeAccent}{\textbf{12.4\%}}。
     \end{enumerate}
 \end{itemize}
+
+
+\resumeentry
+  {设备异常监测与预警系统}
+  {异常检测 / 在线推理}
+  {2024.03}{2024.07}
+\begin{itemize}
+  \item \textbf{项目方案：}基于 PyTorch 与 Isolation Forest 处理工业设备遥测，使用 FastAPI、Redis 和 Docker 部署实时分级预警服务。
+  \item \textbf{项目成果：}日均处理 120 万条数据，故障召回率达到 \textcolor{ResumeAccent}{\textbf{93.4\%}}，误报率降低 \textcolor{ResumeAccent}{\textbf{38.6\%}}。
+\end{itemize}
+
 
 \section{个人技能}
 \begin{itemize}
@@ -109,7 +105,8 @@
 \end{itemize}
 
 \section{教育背景}
-\resumeentry
+% 本条只覆盖标题和副标题颜色；字重、字号、日期及间距继续继承全局默认值。
+\resumeentry[title-color=black,subtitle-color=black]
   {海棠理工大学}
   {人工智能与数据工程 \quad 本科}
   {2020.09}{2024.06}
