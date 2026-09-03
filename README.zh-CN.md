@@ -33,7 +33,7 @@ ClarityCV 是一款面向中文求职场景的轻量级 LaTeX 简历文档类。
 
 ## 排版预览
 
-四套示例使用同一套虚构文案、照片和基础排版，只通过公开参数改变颜色、章节线和条目样式，便于直观比较不同主题。
+四套示例使用同一套虚构文案和照片，仅通过公开参数改变颜色、章节线、条目样式，并按需微调正文密度以保持每套展示均为一页 A4，便于直观比较不同主题。
 
 点击预览图可打开 PDF，点击“源文件”可查看对应的独立 `.tex` 文档。
 
@@ -133,6 +133,8 @@ xelatex claritycv.tex
 ```tex
 \definecolor{MyTheme}{RGB}{35,82,112}
 \resumesetup{
+  page-top-margin=1.25cm,
+  page-bottom-margin=1.25cm,
   color=MyTheme,
   font=modern,
   section-line=gradient,
@@ -155,6 +157,8 @@ xelatex claritycv.tex
 
 | 参数 | 可选值或格式 | 默认值 |
 | --- | --- | --- |
+| `page-top-margin` | LaTeX 长度 | `1.25cm` |
+| `page-bottom-margin` | LaTeX 长度 | `1.25cm` |
 | `color` | 已定义的颜色名 | `ResumeClassic` |
 | `accent-color` | 已定义的颜色名 | `ResumeAccent`（标准红色） |
 | `muted-color` | 已定义的颜色名 | `ResumeMuted` |

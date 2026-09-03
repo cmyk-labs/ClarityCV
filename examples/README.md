@@ -4,8 +4,8 @@
 
 | 示例 | 条目样式 | 主题差异 |
 | --- | --- | --- |
-| `classic-clean.tex` | 普通条目、渐变细线 | 墨蓝主题与砖红强调 |
-| `modern-colorblocks.tex` | Logo 公司色块、较粗章节线 | 深青主题；蓝色与粉色 Logo 分别匹配同色系色块 |
+| `classic-clean.tex` | 普通条目、渐变细线 | 墨蓝主题与砖红强调；`8.6pt` 紧凑正文 |
+| `modern-colorblocks.tex` | Logo 公司色块、较粗章节线 | 深青主题；蓝色与粉色 Logo 分别匹配同色系色块；`8.8pt` 正文 |
 | `minimal-mono.tex` | 普通条目、极细章节线 | 黑灰单色主题 |
 
 每个 `.tex` 都包含完整导言区、头部和正文，不依赖 `\input`、共享正文或 `\Example...` 包装命令。三个示例与根目录 `claritycv.tex` 使用同一套虚构文案及 `images/placeholder-id-photo-transparent.png` 虚构照片，文档类不会裁切图片透明区域。

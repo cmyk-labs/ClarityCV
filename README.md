@@ -33,7 +33,7 @@ Résumé content favors standard LaTeX commands such as `\section`, `itemize`, `
 
 ## Preview
 
-All four examples use the same fictional copy, portrait, and base typography. Only public options change their colors, section rules, and entry styles, making the themes easy to compare.
+All four examples use the same fictional copy and portrait. Public options change their colors, section rules, entry styles, and small density adjustments where needed to keep each showcase on one A4 page.
 
 Click a preview to open its PDF, or select **Source** to inspect the corresponding standalone `.tex` document.
 
@@ -133,6 +133,8 @@ The recommended appearance already lives in `claritycv.cls`. Call `\resumesetup`
 ```tex
 \definecolor{MyTheme}{RGB}{35,82,112}
 \resumesetup{
+  page-top-margin=1.25cm,
+  page-bottom-margin=1.25cm,
   color=MyTheme,
   font=modern,
   section-line=gradient,
@@ -155,6 +157,8 @@ Styles use three override levels: the class supplies polished defaults, `\resume
 
 | Key | Accepted values | Default |
 | --- | --- | --- |
+| `page-top-margin` | LaTeX length | `1.25cm` |
+| `page-bottom-margin` | LaTeX length | `1.25cm` |
 | `color` | Any defined color | `ResumeClassic` |
 | `accent-color` | Any defined color | `ResumeAccent` (standard red) |
 | `muted-color` | Any defined color | `ResumeMuted` |

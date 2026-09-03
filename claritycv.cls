@@ -1,6 +1,6 @@
 % claritycv.cls -- ClarityCV 中文简历文档类
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{claritycv}[2026/09/04 v2.11 ClarityCV class]
+\ProvidesClass{claritycv}[2026/09/04 v2.12 ClarityCV class]
 
 % 未识别的文档类选项直接交给 ctexart；模板自身统一通过 \resumesetup 配置。
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{ctexart}}
@@ -9,7 +9,8 @@
 % 延续 v4 的 Windows 中文字体配置：正文宋体，标题黑体。
 \LoadClass[UTF8,a4paper,fontset=windows]{ctexart}
 
-\RequirePackage[top=0.6cm,left=1.5cm,right=1.5cm,bottom=1.5cm]{geometry}
+% 所有页面共用相同的上下安全留白；后续页不再贴近纸张边缘。
+\RequirePackage[top=1.25cm,left=1.5cm,right=1.5cm,bottom=1.25cm]{geometry}
 \RequirePackage{fontspec}
 \RequirePackage{graphicx}
 \RequirePackage{xcolor}
@@ -157,6 +158,8 @@
 \pgfkeys{
   /claritycv/.is family,
   /claritycv,
+  page-top-margin/.code={\geometry{top=#1}},
+  page-bottom-margin/.code={\geometry{bottom=#1}},
   color/.code={\colorlet{ResumePrimary}{#1}},
   accent-color/.code={\colorlet{ResumeAccent}{#1}},
   muted-color/.code={\colorlet{ResumeMuted}{#1}},
@@ -784,9 +787,13 @@
   \nobreak\vspace{0.35em}%
 }
 
-% 日期始终由开始、结束两个参数组成，连接符和两侧间距由文档类统一生成。
+% 日期通常由开始、结束两个参数组成；任一侧为空时仅显示非空内容。
 \newcommand*{\scr@entrydaterange}[2]{%
-  \mbox{#1\hspace{0.28em}-\hspace{0.28em}#2}%
+  \ifstrempty{#1}{%
+    \ifstrempty{#2}{}{\mbox{#2}}%
+  }{%
+    \ifstrempty{#2}{\mbox{#1}}{\mbox{#1\hspace{0.28em}-\hspace{0.28em}#2}}%
+  }%
 }
 
 \newcommand*{\scr@plainentry}[3]{%
@@ -856,7 +863,7 @@
 }
 
 % 所有视觉参数默认继承 \resumesetup；可选参数只覆盖当前条目。
-% 必选参数依次为：主标题、副标题、开始时间、结束时间。
+% 必选参数依次为：主标题、副标题、开始时间、结束时间；日期允许任一侧留空。
 \NewDocumentCommand{\resumeentry}{O{} m m m m}{%
   \begingroup
   \let\scr@entrystyle\scr@defaultentrystyle
